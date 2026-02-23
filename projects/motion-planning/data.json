@@ -1,0 +1,20 @@
+{
+    "title": "Real-Time Motion Planning for Drones",
+    "year": "2024",
+    "tag": "Motion Planning",
+    "description": "Real-time motion planning framework integrating OctoMap for global 3D mapping and EDT3D for local collision detection. Designed kinodynamic RRT-based planner.",
+    "image": "https://via.placeholder.com/600x400?text=Motion+Planning",
+    "skills": [
+        "C++",
+        "ROS2",
+        "OctoMap",
+        "EDT3D"
+    ],
+    "links": [
+        {
+            "label": "Source",
+            "url": "https://github.com/ShreyasKhobragade/",
+            "iconType": "github"
+        }
+    ]
+}

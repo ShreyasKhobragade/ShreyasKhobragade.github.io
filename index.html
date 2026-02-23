@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyas Khobragade | Robotics & Perception Engineer</title>
+    <meta name="description"
+        content="Portfolio of Shreyas Khobragade, a Robotics and Perception Engineer specializing in computer vision, motion planning, and autonomous systems.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lightbox.css">
+    <link rel="stylesheet" href="marquee.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">SK.</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#publications">Publications</a>
+                <a href="#projects">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-background">
+                <!-- We'll use CSS for the dark sleek background, maybe add a subtle grid or gradient -->
+                <div class="glow glow-1"></div>
+                <div class="glow glow-2"></div>
+                <div class="grid-overlay"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="greeting reveal-text">Hello, I'm</p>
+                    <h1 class="name reveal-text">Shreyas Khobragade</h1>
+                    <h2 class="title reveal-text">Robotics & Perception Engineer</h2>
+
+                    <div class="hero-social-links reveal-text">
+                        <a href="https://github.com/ShreyasKhobragade/" target="_blank" class="social-icon">GitHub</a>
+                        <a href="https://www.linkedin.com/in/shreyas-khobragade/" target="_blank"
+                            class="social-icon">LinkedIn</a>
+                        <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=_ce6oLcAAAAJ"
+                            target="_blank" class="social-icon">Google Scholar</a>
+                        <a href="Resume/SHREYAS DEVDATTA KHOBRAGADE.pdf" target="_blank" class="social-icon">Resume</a>
+                        <a href="https://pear.wpi.edu" target="_blank" class="social-icon highlight">PeAR Lab</a>
+                    </div>
+
+                    <p class="tagline reveal-text">Building real-time autonomous systems for aerial and ground robots.
+                        Bridging the gap between applied research and production.</p>
+
+                    <div class="hero-cta reveal-text">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#publications" class="btn btn-outline">Publications</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal-fade">
+                    <div class="collage-wrapper">
+                        <div class="collage-item c-1 glass-panel">
+                            <img src="images/ShreyasKhobragade.jpg" alt="Shreyas profile" class="hero-img">
+                        </div>
+                        <div class="collage-item c-2 glass-panel">
+                            <img src="images/GlennYee_Shreyas.jpeg" alt="Receiving Award" class="hero-img">
+                        </div>
+                        <div class="collage-item c-3 glass-panel">
+                            <img src="images/drsk.png" alt="Working with Drone" class="hero-img">
+                        </div>
+                        <div class="collage-item c-4 glass-panel">
+                            <img src="images/sarangradronesk.jpeg" alt="Sarang Drone" class="hero-img">
+                        </div>
+                        <div class="collage-item c-5 glass-panel">
+                            <img src="images/AsterNavdrone.jpg" alt="AsterNav Drone" class="hero-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#about" class="scroll-indicator" aria-label="Scroll Down">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </a>
+        </section>
+
+        <!-- About Section (Brief) -->
+        <section id="about" class="section">
+            <div class="section-container">
+                <div class="section-header reveal-up">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="title-line"></div>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text reveal-up">
+                        <p>I am a Robotics and Perception Engineer with a Master's from Worcester Polytechnic Institute.
+                            My passion lies in creating robust autonomy pipelines, particularly for challenging
+                            environments like zero-light and GPS-denied spaces.</p>
+                        <p>I specialize in computer vision, motion planning, and sim-to-real deployment, translating
+                            complex research ideas into reliable systems running on constrained embedded hardware.</p>
+                    </div>
+                    <div class="experience-timeline reveal-up">
+                        <!-- Quick experience highlights -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2024 - Present</div>
+                            <h3 class="timeline-role">Graduate Researcher</h3>
+                            <p class="timeline-company">PeAR Lab, WPI</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2022 - 2024</div>
+                            <h3 class="timeline-role">5G Software Engineer (R&D)</h3>
+                            <p class="timeline-company">Jio Platforms Limited</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section (Visual, interactive nodes) -->
+        <section id="skills" class="section dark-section">
+            <div class="section-container">
+                <div class="section-header center reveal-up">
+                    <h2 class="section-title">Technical Expertise</h2>
+                    <p class="section-subtitle">A diverse toolkit for comprehensive robotics development</p>
+                </div>
+
+                <!-- We will implement the stevenf7 style interactive skills layout here -->
+                <div class="skills-showcase reveal-up">
+
+                    <div class="skill-category">
+                        <h3>Robotics & Autonomy</h3>
+                        <div class="skill-cloud">
+                            <span class="skill-badge glass" data-hover="ROS2">ROS2</span>
+                            <span class="skill-badge glass" data-hover="Motion Planning">Motion Planning (RRT,
+                                Kinodynamic RRT)</span>
+                            <span class="skill-badge glass" data-hover="Visual-Inertial Odometry">Visual-Inertial
+                                Odometry</span>
+                            <span class="skill-badge glass" data-hover="Reinforcement Learning">Reinforcement Learning
+                                (PPO)</span>
+                            <span class="skill-badge glass" data-hover="Sim-to-Real">Sim-to-Real Deployment</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Perception & AI</h3>
+                        <div class="skill-cloud">
+                            <span class="skill-badge glass" data-hover="Computer Vision">Computer Vision</span>
+                            <span class="skill-badge glass" data-hover="OpenCV">OpenCV</span>
+                            <span class="skill-badge glass" data-hover="PyTorch">PyTorch</span>
+                            <span class="skill-badge glass" data-hover="TensorFlow">TensorFlow</span>
+                            <span class="skill-badge glass" data-hover="scikit-learn">scikit-learn</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Programming & Tools</h3>
+                        <div class="skill-cloud">
+                            <span class="skill-badge glass" data-hover="Python">Python</span>
+                            <span class="skill-badge glass" data-hover="C/C++">C/C++</span>
+                            <span class="skill-badge glass" data-hover="Linux">Linux</span>
+                            <span class="skill-badge glass" data-hover="Isaac Sim">Isaac Sim</span>
+                            <span class="skill-badge glass" data-hover="Blender">Blender</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Hardware Connectivity</h3>
+                        <div class="skill-cloud">
+                            <span class="skill-badge glass" data-hover="Jetson Orin Nano">Jetson Orin Nano</span>
+                            <span class="skill-badge glass" data-hover="Raspberry Pi">Raspberry Pi</span>
+                            <span class="skill-badge glass" data-hover="Pixhawk/PX4">Pixhawk / PX4</span>
+                            <span class="skill-badge glass" data-hover="Microcontrollers">Arduino / ESP32</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="section dark-section">
+            <div class="section-container">
+                <div class="section-header reveal-up">
+                    <h2 class="section-title massive-text">Publications.</h2>
+                    <div class="title-line"></div>
+                </div>
+
+                <div class="publications-list">
+                    <div class="publication-item reveal-up">
+                        <div class="pub-year">2026</div>
+                        <div class="pub-details">
+                            <h3>AsterNav: Autonomous Aerial Robot Navigation in Darkness Using Passive Computation</h3>
+                            <p class="pub-venue">IEEE Robotics and Automation Letters (RA-L), Early Access</p>
+                            <a href="https://ieeexplore.ieee.org/document/11346995" target="_blank"
+                                class="pub-link hover-underline">Read Paper</a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item reveal-up">
+                        <div class="pub-year">2022</div>
+                        <div class="pub-details">
+                            <h3>Real-time Track and Anomaly Detection in Complex Railway Environments</h3>
+                            <p class="pub-venue">International Conference on Communication, Embedded Systems, Machine
+                                Learning and Signal Processing (PCEMS)</p>
+                            <a href="https://ieeexplore.ieee.org/document/9807974" target="_blank"
+                                class="pub-link hover-underline">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Dynamic Wattenberger style) -->
+        <section id="projects" class="section">
+            <div class="section-container">
+                <div class="section-header reveal-up">
+                    <h2 class="section-title massive-text">Selected Work.</h2>
+                    <div class="title-line"></div>
+                </div>
+
+                <!-- Projects injected by render_projects.js -->
+                <div class="projects-grid">
+                    <!-- Loading skeleton could go here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Drone Builds Marquee Section -->
+        <section id="drone-builds" class="section dark-section" style="padding: 2rem 0; overflow: hidden;">
+            <div class="section-container" style="max-width: 100%; padding: 0;">
+                <div class="section-header center reveal-up" style="margin-bottom: 2rem;">
+                    <h2 class="section-title">Hardware & Drone Builds</h2>
+                    <p class="section-subtitle">Custom aerial platforms from the lab to the field</p>
+                </div>
+
+                <div class="drone-marquee-container">
+                    <div class="drone-marquee-track">
+                        <!-- Original Set -->
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20250830_032617.jpg"
+                                alt="Drone Build 1"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20250830_032627.jpg"
+                                alt="Drone Build 2"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20250904_235431.jpg"
+                                alt="Drone Build 3"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20251022_201204.jpg"
+                                alt="Drone Build 4"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/AsterNavdrone.jpg"
+                                alt="AsterNav Drone Build"></div>
+
+                        <!-- Duplicate Set for infinite scroll -->
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20250830_032617.jpg"
+                                alt="Drone Build 1"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20250830_032627.jpg"
+                                alt="Drone Build 2"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20250904_235431.jpg"
+                                alt="Drone Build 3"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/20251022_201204.jpg"
+                                alt="Drone Build 4"></div>
+                        <div class="drone-marquee-item glass-panel"><img src="images/Drone Builds/AsterNavdrone.jpg"
+                                alt="AsterNav Drone Build"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Drone Cursor / Graphics Section (placeholder indicator) -->
+        <div id="drone-cursor" class="hidden"></div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-branding reveal-up">
+                    <h2>Ready to Build.</h2>
+                    <p>Let's collaborate on the next generation of autonomous systems.</p>
+                    <a href="mailto:skhobragade@wpi.edu" class="email-link btn btn-primary mt-4">skhobragade@wpi.edu</a>
+                </div>
+
+                <div class="footer-links reveal-up flex-col">
+                    <h3>Connect</h3>
+                    <a href="https://www.linkedin.com/in/shreyas-khobragade/" target="_blank"
+                        class="hover-glow">LinkedIn</a>
+                    <a href="https://github.com/ShreyasKhobragade/" target="_blank" class="hover-glow">GitHub</a>
+                    <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=_ce6oLcAAAAJ"
+                        target="_blank" class="hover-glow">Google Scholar</a>
+                    <a href="Resume/SHREYAS DEVDATTA KHOBRAGADE.pdf" target="_blank" class="hover-glow">Resume</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Shreyas Khobragade. All rights reserved.</p>
+                <div class="tech-credit">
+                    <span>Designed with precision.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="projects/projects_index.js"></script>
+    <script src="js/render_projects.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

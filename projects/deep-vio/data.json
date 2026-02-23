@@ -1,0 +1,19 @@
+{
+    "title": "Deep Visual-Inertial Odometry",
+    "year": "2025",
+    "tag": "VIO",
+    "description": "Developed a deep learning-based Visual-Inertial Odometry framework integrating CNNs for visual feature extraction and LSTMs for IMU data processing. Achieved 28% RMSE reduction over baselines.",
+    "image": "https://via.placeholder.com/600x400?text=Deep+VIO",
+    "skills": [
+        "Python",
+        "PyTorch",
+        "Blender"
+    ],
+    "links": [
+        {
+            "label": "Source",
+            "url": "https://github.com/ShreyasKhobragade/RBE549-Deep-and-Un-Deep-VIO",
+            "iconType": "github"
+        }
+    ]
+}

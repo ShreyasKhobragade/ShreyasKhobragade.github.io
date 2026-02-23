@@ -1,0 +1,20 @@
+{
+    "title": "Einstein Vision",
+    "year": "2025",
+    "tag": "Computer Vision",
+    "description": "Advanced Visualizations for Self-Driving Cars. Evaluated cutting-edge models (Mask R-CNN, YOLO, Detic, Depth Anything V2) on challenging scenarios like night driving and heavy rain. Generated synthetic training data in Blender.",
+    "image": "https://via.placeholder.com/600x400?text=Einstein+Vision",
+    "skills": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "Blender"
+    ],
+    "links": [
+        {
+            "label": "Source",
+            "url": "https://github.com/ShreyasKhobragade/RBE549-Einstein-Vision",
+            "iconType": "github"
+        }
+    ]
+}

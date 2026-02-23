@@ -1,0 +1,37 @@
+{
+  "title": "AsterNav",
+  "year": "2026",
+  "tag": "IEEE RA-L",
+  "description": "Autonomous Aerial Robot Navigation in Darkness Using Passive Computation. Designed a complete sim-to-real pipeline for drones operating in zero-light, GPS-denied environments using structured lighting.",
+  "image": "AsterNavdrone.jpg",
+  "extraImage": "drsk.png",
+  "skills": [
+    "Python",
+    "Jetson Orin Nano",
+    "Deep Learning Depth Estimation",
+    "Pixhawk",
+    "ArduPilot"
+  ],
+  "links": [
+    {
+      "label": "Project Page",
+      "url": "https://pear.wpi.edu/research/asternav.html",
+      "iconType": "link"
+    },
+    {
+      "label": "Research Paper",
+      "url": "https://ieeexplore.ieee.org/document/11346995",
+      "iconType": "paper"
+    },
+    {
+      "label": "Video",
+      "url": "https://www.youtube.com/watch?v=r2RBFTkhFX0",
+      "iconType": "video"
+    },
+    {
+      "label": "Source",
+      "url": "https://github.com/pearwpi/AsterNav",
+      "iconType": "github"
+    }
+  ]
+}
