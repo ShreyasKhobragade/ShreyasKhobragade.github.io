@@ -35,7 +35,7 @@
     gap: 2rem;
     padding: 1rem 2rem;
     width: max-content;
-    animation: marquee-scroll 30s linear infinite;
+    animation: marquee-scroll 75s linear infinite;
 }
 
 .drone-marquee-track:hover {
