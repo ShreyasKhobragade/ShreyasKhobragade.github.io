@@ -99,8 +99,8 @@ function initLightbox() {
     const modalImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.lightbox-close');
 
-    // We only want this for the hero images per the user's request
-    const heroImages = document.querySelectorAll('.hero-img');
+    // Select both hero images and drone build images
+    const heroImages = document.querySelectorAll('.hero-img, .drone-marquee-item img');
 
     if (!modal || !modalImg || !closeBtn) return;
 

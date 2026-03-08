@@ -58,7 +58,8 @@
     cursor: pointer;
 }
 
-/* Make cursor a pointer on clickable hero images */
-.hero-img {
+/* Make cursor a pointer on clickable images */
+.hero-img,
+.drone-marquee-item img {
     cursor: pointer;
 }
