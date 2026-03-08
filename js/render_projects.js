@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     for (const folder of projectFolders) {
         try {
-            const response = await fetch(`projects/${folder}/data.json`);
+            const cacheBuster = new Date().getTime();
+            const response = await fetch(`projects/${folder}/data.json?t=${cacheBuster}`);
             if (!response.ok) {
                 console.error(`Failed to load data for project: ${folder}`);
                 continue;
