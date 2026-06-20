@@ -146,14 +146,9 @@
                                         <p class="timeline-company" style="margin-bottom: 1rem;">PeAR Lab, WPI</p>
                                         <ul
                                             style="color: var(--text-tertiary); padding-left: 1.2rem; font-size: 0.95rem;">
-                                            <li style="margin-bottom: 0.5rem;">Designed and implemented a complete
-                                                sim-to-real
-                                                autonomy pipeline for aerial robots in zero-light and GPS-denied
-                                                environments.
-                                            </li>
-                                            <li>Trained deep learning models for depth inference achieving real-time
-                                                performance
-                                                on Jetson Orin Nano.</li>
+                                            <li style="margin-bottom: 0.5rem;">Designed a complete <strong>sim-to-real autonomy pipeline</strong> for drones in <strong>zero-light, GPS-denied environments</strong> using structured lighting and coded apertures.</li>
+                                            <li style="margin-bottom: 0.5rem;">Trained and deployed deep learning models (DenseNet-121) on <strong>Jetson Orin Nano</strong>, achieving real-time depth inference at <strong>15+ FPS</strong>.</li>
+                                            <li>Integrated perception with motion planning for closed-loop navigation, and currently developing learning-based low-light navigation using event cameras.</li>
                                         </ul>
                                     </div>
                                     <img src="PeAR_logo.png" alt="PeAR Lab Logo"
@@ -170,12 +165,9 @@
                                         </p>
                                         <ul
                                             style="color: var(--text-tertiary); padding-left: 1.2rem; font-size: 0.95rem;">
-                                            <li style="margin-bottom: 0.5rem;">Developed high-performance C/C++
-                                                networking
-                                                software within the VPP framework.</li>
-                                            <li>Implemented shared-memory mechanisms to store statistics, enabling
-                                                improved
-                                                real-time monitoring and faster debugging.</li>
+                                            <li style="margin-bottom: 0.5rem;">Developed <strong>high-performance C/C++ networking software</strong> within the Vector Packet Processing (VPP) framework.</li>
+                                            <li style="margin-bottom: 0.5rem;">Implemented shared-memory mechanisms to store <strong>User Plane Function (UPF) statistics</strong>, enabling real-time monitoring and faster debugging.</li>
+                                            <li>Migrated and refactored UPF components to support newer VPP versions, optimizing system stability and low-latency performance.</li>
                                         </ul>
                                     </div>
                                     <!-- A placeholder class for Jio logo if you have one -->
@@ -196,20 +188,25 @@
                         <div class="experience-timeline reveal-up">
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
-                                <div class="timeline-date">2024 – 2026</div>
+                                <div class="timeline-date">Aug 2024 – May 2026</div>
                                 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                                     <div>
-                                        <h3 class="timeline-role" style="margin-bottom: 0.5rem;">M.S. Robotics
-                                            Engineering</h3>
+                                        <h3 class="timeline-role" style="margin-bottom: 0.5rem;">M.S. Robotics Engineering</h3>
                                         <p class="timeline-company"
                                             style="margin-bottom: 0.5rem; color: var(--text-secondary);">
-                                            Worcester Polytechnic Institute (WPI) — GPA: 4.0
+                                            Worcester Polytechnic Institute (WPI) — GPA: 4.0 / 4.0
                                         </p>
-                                        <p style="font-size: 0.95rem; color: var(--text-tertiary); line-height: 1.6;">
-                                            <strong>Awards:</strong> Dr. Glenn Yee Graduate Student Award<br>
-                                            <strong>Coursework:</strong> Computer Vision, Motion Planning, Reinforcement
-                                            Learning, Autonomous Aerial Robotics
+                                        <p style="font-size: 0.95rem; color: var(--text-tertiary); line-height: 1.6; margin-bottom: 0.5rem;">
+                                            <strong>Coursework:</strong> Computer Vision, Motion Planning, Reinforcement Learning, Autonomous Aerial Robotics
                                         </p>
+                                        <div style="font-size: 0.85rem; color: var(--text-tertiary); opacity: 0.8;">
+                                            <strong style="color: var(--text-secondary);">Awards & Honors:</strong>
+                                            <ul style="padding-left: 1rem; margin-top: 0.15rem; list-style-type: circle;">
+                                                <li style="margin-bottom: 0.15rem;">Dr. Glenn Yee Graduate Student Project Award</li>
+                                                <li style="margin-bottom: 0.15rem;">Dr. Glenn Yee Graduate Student Travel Award</li>
+                                                <li>EDU Bridge Scholarship</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <img src="WPI_logo.png" alt="WPI Logo"
                                         style="width: 160px; height: 160px; margin-left: 1rem; object-fit: contain; flex-shrink: 0;">
@@ -217,13 +214,12 @@
                             </div>
                             <div class="timeline-item" style="margin-top: 2.5rem;">
                                 <div class="timeline-dot"></div>
-                                <div class="timeline-date">2018 – 2022</div>
+                                <div class="timeline-date">Aug 2018 – May 2022</div>
                                 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                                     <div>
-                                        <h3 class="timeline-role" style="margin-bottom: 0.5rem;">B.Tech. Electronics &
-                                            Comm. Eng.</h3>
+                                        <h3 class="timeline-role" style="margin-bottom: 0.5rem;">B.Tech. Electronics and Communication Engineering</h3>
                                         <p class="timeline-company" style="margin-bottom: 0;">
-                                            Visvesvaraya National Institute of Technology (VNIT) — GPA: 8.26
+                                            Visvesvaraya National Institute of Technology (VNIT) — GPA: 8.26 / 10
                                         </p>
                                     </div>
                                     <img src="VNIT_logo.png" alt="VNIT Logo"
@@ -309,6 +305,23 @@
                 </div>
 
                 <div class="publications-list">
+                    <div class="publication-item reveal-up">
+                        <div class="pub-year">2026</div>
+                        <div class="pub-details">
+                            <h3>NightSight: Passive Computation for Navigation in Dark Using Events</h3>
+                            <p class="pub-venue">
+                                Neuromorphic Field Robotics Workshop, IEEE International Conference on Robotics and Automation (ICRA) 2026
+                            </p>
+                            <div class="pub-links-container"
+                                style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <a href="https://arxiv.org/pdf/2605.26330" target="_blank"
+                                    class="pub-link hover-underline">Read Paper</a>
+                                <a href="https://arxiv.org/abs/2605.26330" target="_blank"
+                                    class="pub-link hover-underline">arXiv</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="publication-item reveal-up">
                         <div class="pub-year">2026</div>
                         <div class="pub-details">

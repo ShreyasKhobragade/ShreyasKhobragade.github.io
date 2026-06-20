@@ -2,7 +2,7 @@
     "title": "Einstein Vision",
     "year": "2025",
     "tag": "Computer Vision",
-    "description": "Advanced Visualizations for Self-Driving Cars. Evaluated cutting-edge models (Mask R-CNN, YOLO, Detic, Depth Anything V2) on challenging scenarios like night driving and heavy rain. Generated synthetic training data in Blender.",
+    "description": "Perception and visualization pipelines for autonomous driving scenarios, integrating object detection, lane detection, optical flow, and depth estimation. Integrated models including Mask R-CNN, YOLO, Detic, Depth Anything V2, and RAFT to detect and track vehicles, pedestrians, lanes, and traffic signals. Generated high-fidelity rendered videos across 13 driving sequences, reducing perception ambiguities by 15–20% through hybrid deep learning and classical heuristics.",
     "image": "https://via.placeholder.com/600x400?text=Einstein+Vision",
     "skills": [
         "Python",

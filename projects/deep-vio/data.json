@@ -2,7 +2,7 @@
     "title": "Deep Visual-Inertial Odometry",
     "year": "2025",
     "tag": "VIO",
-    "description": "Developed a deep learning-based Visual-Inertial Odometry framework integrating CNNs for visual feature extraction and LSTMs for IMU data processing. Achieved 28% RMSE reduction over baselines.",
+    "description": "Designed a visual-inertial odometry (VIO) pipeline combining CNN-based visual feature extraction with LSTM-based IMU fusion. Trained models using synthetic datasets generated in Blender across 25 trajectory types and multiple noise profiles. Achieved a 28% reduction in absolute trajectory error RMSE compared to baseline approaches.",
     "image": "https://via.placeholder.com/600x400?text=Deep+VIO",
     "skills": [
         "Python",

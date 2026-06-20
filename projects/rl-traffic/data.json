@@ -2,7 +2,7 @@
     "title": "Optimizing Mixed-Autonomy Traffic",
     "year": "2024",
     "tag": "RL",
-    "description": "Reinforcement Learning model using PPO to improve traffic flow and fairness in lane-merging scenarios. Utilized Flow and SUMO simulation to balance efficiency and equity.",
+    "description": "Developed a reinforcement learning framework using Proximal Policy Optimization (PPO) to improve traffic flow in mixed human-autonomous driving scenarios. Designed reward functions incorporating efficiency and fairness constraints. Demonstrated improved throughput, average speed, and fairness across multiple bottleneck scenarios.",
     "image": "https://via.placeholder.com/600x400?text=RL+Traffic",
     "skills": [
         "Python",
