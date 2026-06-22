@@ -4,6 +4,7 @@
   "tag": "IEEE RA-L",
   "description": "Autonomous Aerial Robot Navigation in Darkness Using Passive Computation. Designed a complete sim-to-real pipeline for drones operating in zero-light, GPS-denied environments using structured lighting.",
   "image": "AsterNavdrone.jpg",
+  "projectPage": "index.html",
   "extraImage": "drsk.png",
   "skills": [
     "Python",
