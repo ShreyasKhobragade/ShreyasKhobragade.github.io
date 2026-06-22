@@ -17,11 +17,11 @@
     <style>
         /* Specific project page override style adjustments */
         .project-detail-layout {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 8rem 2rem 4rem 2rem;
         }
-
+        
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -94,14 +94,14 @@
 
         .section-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1fr 1.3fr;
             gap: 4rem;
             margin-bottom: 6rem;
             align-items: center;
         }
 
         .section-grid.reversed {
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1.3fr 1fr;
         }
 
         .section-content h2 {
@@ -158,7 +158,8 @@
             transition: all var(--transition-fast);
         }
 
-        .single-large-visual img {
+        .single-large-visual img,
+        .single-large-visual video {
             width: 100%;
             height: auto;
             border-radius: 16px;
@@ -169,7 +170,8 @@
             border-color: var(--accent-blue);
         }
 
-        .single-large-visual:hover img {
+        .single-large-visual:hover img,
+        .single-large-visual:hover video {
             transform: scale(1.02);
         }
 
@@ -203,7 +205,8 @@
         }
 
         /* Lightbox cursor override */
-        .single-large-visual img {
+        .single-large-visual img,
+        .single-large-visual video {
             cursor: zoom-in;
         }
 
@@ -351,16 +354,23 @@
             </div>
         </section>
 
-        <!-- Performance Section -->
-        <section class="section-grid reversed">
-            <div class="section-content" style="grid-column: span 2;">
-                <h2>Deployment & Performance</h2>
-                <p style="font-size: 1.1rem; line-height: 1.8;">
-                    The entire depth estimation and planning pipeline was integrated onto a custom quadrotor platform running on an <strong>NVIDIA Jetson Orin Nano</strong>. AsterNet successfully performs monocular structured-light depth estimation onboard in real-time at <strong>20 Hz</strong>.
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.8;">
-                    In real-world testing, the quadrotor successfully navigated around unknown obstacles of various geometries, materials, and colors in absolute darkness. It achieved an overall success rate of <strong>95.5%</strong>, successfully avoiding challenging targets including dark matte surfaces (which absorb IR light) and extremely thin ropes of only <strong>6.25mm</strong> diameter.
-                </p>
+        <!-- Performance & Flight Experiments Section -->
+        <section class="project-intro-card" style="margin-top: 4rem; margin-bottom: 4rem;">
+            <h2>Deployment & Real-world Flight Experiments</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-primary); margin-top: 1rem;">
+                The entire depth estimation and planning pipeline was integrated onto a custom quadrotor platform running on an <strong>NVIDIA Jetson Orin Nano</strong>. AsterNet successfully performs monocular structured-light depth estimation onboard in real-time at <strong>20 Hz</strong>.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-top: 1rem;">
+                In real-world testing, the quadrotor successfully navigated around unknown obstacles of various geometries, materials, and colors in absolute darkness. It achieved an overall success rate of <strong>95.5%</strong>, successfully avoiding challenging targets including dark matte surfaces (which absorb IR light) and extremely thin ropes of only <strong>6.25mm</strong> diameter.
+            </p>
+            <div style="margin-top: 3rem; text-align: center;">
+                <div class="single-large-visual" style="max-width: 1000px; margin: 0 auto; background: rgba(255,255,255,0.01);">
+                    <video autoplay loop muted playsinline class="zoomable-video" style="width: 100%; height: auto; border-radius: 16px; display: block;">
+                        <source src="more_info/flight_experiment.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="visual-label" style="margin-top: 1rem;">Autonomous drone navigating obstacles in zero-light conditions.</div>
             </div>
         </section>
 
@@ -395,7 +405,8 @@
     <!-- Lightbox Modal -->
     <div id="lightbox-modal" class="lightbox-modal">
         <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" alt="Lightbox Preview">
+        <img class="lightbox-content" id="lightbox-img" alt="Lightbox Preview" style="display: none;">
+        <video class="lightbox-content" id="lightbox-video" autoplay loop muted playsinline style="display: none; width: 100%; max-width: 1100px; border-radius: 16px;"></video>
     </div>
 
     <!-- Lightbox script -->
@@ -403,16 +414,34 @@
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.getElementById('lightbox-modal');
             const modalImg = document.getElementById('lightbox-img');
+            const modalVideo = document.getElementById('lightbox-video');
             const closeBtn = document.querySelector('.lightbox-close');
             const zoomableImages = document.querySelectorAll('.zoomable-img');
+            const zoomableVideos = document.querySelectorAll('.zoomable-video');
 
-            if (!modal || !modalImg || !closeBtn) return;
+            if (!modal || !modalImg || !modalVideo || !closeBtn) return;
 
             zoomableImages.forEach(img => {
                 img.addEventListener('click', () => {
                     modal.classList.add('show');
+                    modalImg.style.display = 'block';
+                    modalVideo.style.display = 'none';
                     modalImg.src = img.src;
                     modalImg.alt = img.alt || 'Full screen preview';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            zoomableVideos.forEach(video => {
+                video.addEventListener('click', () => {
+                    const source = video.querySelector('source');
+                    if (!source) return;
+                    modal.classList.add('show');
+                    modalImg.style.display = 'none';
+                    modalVideo.style.display = 'block';
+                    modalVideo.src = source.src;
+                    modalVideo.load();
+                    modalVideo.play().catch(err => console.log('Video play interrupted:', err));
                     document.body.style.overflow = 'hidden';
                 });
             });
@@ -423,13 +452,17 @@
                 setTimeout(() => {
                     if (!modal.classList.contains('show')) {
                         modalImg.src = '';
+                        modalVideo.pause();
+                        modalVideo.src = '';
+                        modalImg.style.display = 'none';
+                        modalVideo.style.display = 'none';
                     }
                 }, 300);
             };
 
             closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                if (e.target !== modalImg) {
+                if (e.target !== modalImg && e.target !== modalVideo) {
                     closeModal();
                 }
             });
