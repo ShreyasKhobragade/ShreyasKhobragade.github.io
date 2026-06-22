@@ -29,8 +29,36 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             const project = await response.json();
 
-            // Construct image path: if it starts with http, use it directly, else prepend the folder path
-            const imagePath = project.image.startsWith('http') ? project.image : `projects/${folder}/${project.image}`;
+            // Construct visual element
+            let visualHTML = '';
+            if (project.imageGrid && Array.isArray(project.imageGrid)) {
+                let gridImagesHTML = '';
+                project.imageGrid.forEach(img => {
+                    const imgPath = img.startsWith('http') ? img : `projects/${folder}/${img}`;
+                    gridImagesHTML += `<img src="${imgPath}" alt="${project.title} Grid Image" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease;">`;
+                });
+                visualHTML = `
+                    <div class="project-img-grid" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; width: 100%; height: 100%; overflow: hidden; border-radius: 20px;">
+                        ${gridImagesHTML}
+                    </div>
+                `;
+            } else if (project.image) {
+                const imagePath = project.image.startsWith('http') ? project.image : `projects/${folder}/${project.image}`;
+                visualHTML = `<img src="${imagePath}" alt="${project.title} Cover Image" class="project-img">`;
+            }
+
+            // Construct link wrapping if projectPage exists
+            let visualContainerHTML = '';
+            if (project.projectPage) {
+                const pagePath = project.projectPage.startsWith('http') ? project.projectPage : `projects/${folder}/${project.projectPage}`;
+                visualContainerHTML = `
+                    <a href="${pagePath}" class="project-link-wrapper" style="display: block; width: 100%; height: 100%; text-decoration: none; border-radius: 20px; overflow: hidden;">
+                        ${visualHTML}
+                    </a>
+                `;
+            } else {
+                visualContainerHTML = visualHTML;
+            }
 
             // Generate Skills HTML
             let skillsHTML = '';
@@ -70,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             projectsHTML += `
                 <article class="project-card reveal-up" id="project-${folder}">
                     <div class="project-visual glass-panel">
-                        <img src="${imagePath}" alt="${project.title} Cover Image" class="project-img">
+                        ${visualContainerHTML}
                         ${statusElement}
                     </div>
                     

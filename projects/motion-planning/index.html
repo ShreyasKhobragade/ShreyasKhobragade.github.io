@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Planning with Kinodynamic Constraints | Shreyas Khobragade</title>
+    <meta name="description"
+        content="Detailed project page for Real-Time Motion Planning for Drones in Unknown and Cluttered Environments using OctoMap, EDT3D, and OMPL.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../lightbox.css">
+    <style>
+        /* Specific project page override style adjustments */
+        .project-detail-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: 1px solid var(--glass-border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateX(-4px);
+        }
+
+        .project-header {
+            margin-bottom: 4rem;
+        }
+
+        .project-meta-pill {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.15) 0%, rgba(0, 242, 254, 0.15) 100%);
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            color: #00f2fe;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title-large {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-intro-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(16px);
+            margin-bottom: 4rem;
+        }
+
+        .research-question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #00f2fe;
+            border-left: 3px solid var(--accent-blue);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            line-height: 1.5;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            align-items: center;
+        }
+
+        .section-grid.reversed {
+            grid-template-columns: 1fr 1.2fr;
+        }
+
+        .section-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-content h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-blue);
+            margin-top: 0.5rem;
+            border-radius: 2px;
+        }
+
+        .section-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .section-content ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .section-content li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .image-gallery-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 0.5rem;
+            overflow: hidden;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .single-large-visual {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .single-large-visual img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        .single-large-visual:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .single-large-visual:hover img {
+            transform: scale(1.02);
+        }
+
+        .visual-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        .limitations-box {
+            background: rgba(255, 59, 48, 0.03);
+            border: 1px solid rgba(255, 59, 48, 0.15);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .limitations-box h3 {
+            color: var(--accent-red);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .limitations-box li::before {
+            color: var(--accent-red) !important;
+        }
+
+        /* Lightbox cursor override */
+        .gallery-card img, .single-large-visual img {
+            cursor: zoom-in;
+        }
+
+        @media (max-width: 968px) {
+            .section-grid, .section-grid.reversed {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .section-grid.reversed .section-visual {
+                order: -1;
+            }
+            .project-detail-layout {
+                padding-top: 6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="../../index.html" class="logo">SK.</a>
+            <div class="nav-links">
+                <a href="../../index.html#about">About</a>
+                <a href="../../index.html#experience">Background</a>
+                <a href="../../index.html#skills">Skills</a>
+                <a href="../../index.html#publications">Publications</a>
+                <a href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="project-detail-layout">
+        <!-- Back Button -->
+        <a href="../../index.html#projects" class="back-btn">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Back to Projects
+        </a>
+
+        <!-- Project Header -->
+        <header class="project-header">
+            <span class="project-meta-pill">Research & Simulation Project • 2024</span>
+            <h1 class="project-title-large">Path Planning with Kinodynamic Constraints</h1>
+            <p class="tagline large-text" style="color: var(--text-secondary); max-width: 800px; line-height: 1.6;">
+                Autonomous Aerial Robot Navigation in Darkness and Cluttered Spaces. A modular trajectory planning pipeline designed to run under real-time constraints in simulated unknown environments.
+            </p>
+        </header>
+
+        <!-- Project Intro & Core Question -->
+        <section class="project-intro-card">
+            <h2>Overview</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-primary); margin-top: 1rem;">
+                This project focuses on a real-time trajectory planner for drones operating in unknown environments under kinodynamic constraints. The primary aim is to develop an intelligent navigation system for drones that can operate autonomously in environments that are not known beforehand. 
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-top: 1rem;">
+                The research specifically addresses the challenge of incorporating kinodynamic constraints considering both kinematic limitations and dynamic constraints. The emphasis on real-time computation is crucial because decisions must be made instantaneously during flight, and path adjustments need to occur immediately when new obstacles are detected.
+            </p>
+            <div class="research-question">
+                <strong>Core Research Question Investigated:</strong><br>
+                "How can drones effectively navigate and avoid obstacles in real-time while operating in completely unknown environments?"
+            </div>
+            <div style="margin-top: 3rem; text-align: center;">
+                <div class="single-large-visual" style="max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.01);">
+                    <img src="Octomap_Env2.png" alt="System Architecture and Mapping Pipeline" class="zoomable-img" style="width: 100%; height: auto;">
+                </div>
+                <div class="visual-label" style="margin-top: 1rem;">System Architecture: Gazebo Simulator environment (top) mapping into EDT3D Local Distance Field (bottom-left) and OctoMap Occupancy Grid (bottom-right).</div>
+            </div>
+        </section>
+
+        <!-- Implementation Section -->
+        <section class="section-grid">
+            <div class="section-content">
+                <h2>The Framework</h2>
+                <p>
+                    Our framework implements a kinodynamically-constrained RRT planner that synthesizes feasible trajectories by incorporating the drone’s dynamic and kinematic constraints during path computation from start to goal states.
+                </p>
+                <p>
+                    While operating in the exploration phase, our system employs the tree-based RRT planner since it provides efficient sampling-based exploration of configuration space, enables real-time path computation, and naturally incorporates both kinodynamic constraints and information gain metrics for unknown environment navigation.
+                </p>
+                <p>
+                    <strong>Sub-path Planning & Pruning:</strong> Since the drone only perceives obstacles up to a certain range, we cannot plan the complete trajectory in one shot. Instead:
+                </p>
+                <ul>
+                    <li>We compute sub-paths up to the visible region and append these sequentially.</li>
+                    <li>At the initial configuration, the drone plans a candidate path from start to goal.</li>
+                    <li>We extract the sub-path up to the visible boundary and prune the remainder.</li>
+                    <li>The boundary node becomes the new start position for the next planning iteration.</li>
+                    <li>This cycle repeats dynamically until the goal region lies within the visible area.</li>
+                </ul>
+            </div>
+            <div class="section-visual">
+                <div class="single-large-visual">
+                    <img src="metrics.png" alt="Performance Evaluation Metrics" class="zoomable-img">
+                </div>
+                <div class="visual-label">Planner metrics across different step sizes for OMPL-only environment.</div>
+            </div>
+        </section>
+
+        <!-- OMPL Environment -->
+        <section class="section-grid reversed">
+            <div class="section-visual">
+                <div class="image-gallery-3col">
+                    <div class="gallery-card">
+                        <img src="drone2D_traj1.png" alt="2D Trajectory Sample 1" class="zoomable-img">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="drone2D_traj2.png" alt="2D Trajectory Sample 2" class="zoomable-img">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="drone2D_traj3.png" alt="2D Trajectory Sample 3" class="zoomable-img">
+                    </div>
+                </div>
+                <div class="visual-label">Evaluated 2D trajectory path steps under OMPL workspace checks.</div>
+            </div>
+            <div class="section-content">
+                <h2>OMPL Environment</h2>
+                <p>
+                    The 2D and 3D environment was designed as a simple workspace where planning tasks relied solely on the OMPL framework. It served as a baseline to evaluate the planner’s ability to generate kinodynamically feasible trajectories without the added complexity of integrating mapping and collision detection libraries.
+                </p>
+                <ul>
+                    <li>Evaluations were performed on the 2D planner, taking three different step sizes, where the planner was run 5 times for each condition.</li>
+                    <li>It was observed that lower step sizes resulted in higher probability of finding the path, where the success rate was defined on number of sub-paths planned for the complete path.</li>
+                    <li>If the number of sub-paths crossed 20 and the planner failed to reach the goal region, the result was classified as <strong>FAIL</strong>, otherwise it was logged as a <strong>SUCCESS</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Gazebo Environment -->
+        <section class="section-grid">
+            <div class="section-content">
+                <h2>Gazebo & OctoMap Integration</h2>
+                <p>
+                    The second environment was more complex, featuring a group of pillars represented within an **OctoMap** framework. These pillars were modeled as obstacles, providing a realistic and cluttered environment for testing.
+                </p>
+                <p>
+                    The **OctoMap** provided a hierarchical representation of the 3D space, while the **EDT3D** library enabled precise local collision detection by computing distances to obstacles within a defined local window around the drone.
+                </p>
+                <p>
+                    <strong>Challenges and Results:</strong>
+                </p>
+                <ul>
+                    <li><strong>Accuracy:</strong> The planner effectively avoided all obstacles in the environment in its successful run, showcasing its robust collision avoidance capabilities.</li>
+                    <li><strong>Scalability:</strong> The modular design of the planner enabled it to handle both simpler OMPL-only scenarios and more complex OctoMap-based environments with ease.</li>
+                    <li><strong>Flexibility:</strong> The planner adapted seamlessly to varied start and goal configurations while maintaining smooth, kinodynamically feasible trajectories.</li>
+                </ul>
+            </div>
+            <div class="section-visual">
+                <div class="single-large-visual">
+                    <img src="SimPlanner.png" alt="Simulated Planner Trajectory" class="zoomable-img">
+                </div>
+                <div class="visual-label">The planned path for the environment in Simulation.</div>
+            </div>
+        </section>
+
+        <!-- Metrics & Platform -->
+        <section class="section-grid reversed">
+            <div class="section-visual">
+                <div class="single-large-visual" style="background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.04);">
+                    <img src="Tools.png" alt="Tools and Platforms Used" class="zoomable-img" style="object-fit: contain; max-height: 100px;">
+                </div>
+            </div>
+            <div class="section-content">
+                <h2>Performance & Platform</h2>
+                <p>
+                    The integration of OctoMap and EDT3D posed additional computational challenges due to the high demands of processing large maps and performing real-time collision detection. 
+                </p>
+                <p>
+                    However, our offline setup allowed the planner to utilize the pre-generated map efficiently, demonstrating robust execution. Performance metrics highlight the relation between step boundaries and execution success rates.
+                </p>
+                <p>
+                    <strong>Tools and Platforms:</strong> The pipeline is built on robust robotics packages including ROS2, OMPL (Open Motion Planning Library), OctoMap 3D voxel grids, and EDT3D distance transforms, implemented entirely in optimized C++ for maximum compute throughput.
+                </p>
+            </div>
+        </section>
+
+        <!-- Limitations -->
+        <section class="limitations-box section-content">
+            <h3>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                Limitations & Future Work
+            </h3>
+            <ul>
+                <li><strong>Simulation Focused:</strong> Since the main focus is the core planning algorithms, the pipeline is evaluated in simulated ROS/Gazebo environments and has not yet been deployed on physical drone hardware.</li>
+                <li><strong>Processing Latency:</strong> The sequential mapping-then-planning architecture introduces processing overhead compared to Reinforcement Learning (RL) approaches, which can learn representations and execute actions concurrently.</li>
+                <li><strong>Static Environments:</strong> The planning algorithm assumes obstacle layouts are static, making it unsuitable for highly dynamic spaces with moving obstacles or other cooperative agents.</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Shreyas Khobragade. All rights reserved.</p>
+                <div class="tech-credit">
+                    <span>Designed with precision.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Lightbox Preview">
+    </div>
+
+    <!-- Lightbox script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('lightbox-modal');
+            const modalImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            const zoomableImages = document.querySelectorAll('.zoomable-img');
+
+            if (!modal || !modalImg || !closeBtn) return;
+
+            zoomableImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    modal.classList.add('show');
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt || 'Full screen preview';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+                setTimeout(() => {
+                    if (!modal.classList.contains('show')) {
+                        modalImg.src = '';
+                    }
+                }, 300);
+            };
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target !== modalImg) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -3,7 +3,8 @@
     "year": "2024",
     "tag": "Motion Planning",
     "description": "Built a real-time 3D motion planning framework for aerial robots operating in unknown and cluttered environments. Integrated OctoMap for global mapping and EDT3D for local collision checking. Implemented a kinodynamic RRT-based planner accounting for vehicle dynamics and obstacle avoidance. Validated collision-free navigation performance in simulation.",
-    "image": "https://via.placeholder.com/600x400?text=Motion+Planning",
+    "image": "Octomap_Env2.png",
+    "projectPage": "index.html",
     "skills": [
         "C++",
         "ROS2",

@@ -3,7 +3,7 @@
     "year": "2025",
     "tag": "VIO",
     "description": "Designed a visual-inertial odometry (VIO) pipeline combining CNN-based visual feature extraction with LSTM-based IMU fusion. Trained models using synthetic datasets generated in Blender across 25 trajectory types and multiple noise profiles. Achieved a 28% reduction in absolute trajectory error RMSE compared to baseline approaches.",
-    "image": "https://via.placeholder.com/600x400?text=Deep+VIO",
+    "image": "vio_cover.png",
     "skills": [
         "Python",
         "PyTorch",
