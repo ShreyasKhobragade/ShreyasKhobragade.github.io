@@ -97,22 +97,60 @@ function initNavbarEffect() {
 function initLightbox() {
     const modal = document.getElementById('lightbox-modal');
     const modalImg = document.getElementById('lightbox-img');
+    const modalVideo = document.getElementById('lightbox-video');
     const closeBtn = document.querySelector('.lightbox-close');
-
-    // Select both hero images and drone build images
-    const heroImages = document.querySelectorAll('.hero-img, .drone-marquee-item img');
 
     if (!modal || !modalImg || !closeBtn) return;
 
-    // Open modal on image click
-    heroImages.forEach(img => {
-        img.addEventListener('click', () => {
-            modal.classList.add('show');
-            modalImg.src = img.src;
-            modalImg.alt = img.alt || 'Full screen image';
-            // Prevent background scrolling while modal is active
-            document.body.style.overflow = 'hidden';
-        });
+    // Event delegation on document to support static and dynamically added images/videos
+    document.addEventListener('click', (e) => {
+        const target = e.target;
+        
+        // Check if the clicked element is one of the zoomable images
+        if (target.matches('.hero-img, .drone-marquee-item img, .project-img, .zoomable-img') || target.closest('.project-img-grid img')) {
+            const imgEl = target.matches('img') ? target : target.querySelector('img');
+            if (imgEl) {
+                modal.classList.add('show');
+                modalImg.style.display = 'block';
+                if (modalVideo) {
+                    modalVideo.style.display = 'none';
+                    modalVideo.pause();
+                    modalVideo.src = '';
+                }
+                modalImg.src = imgEl.src;
+                modalImg.alt = imgEl.alt || 'Full screen preview';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        // Check if the clicked element is a zoomable video or inside its container
+        else if (target.matches('.zoomable-video') || target.closest('.project-video-container')) {
+            const container = target.closest('.project-video-container');
+            const videoEl = container ? container.querySelector('video') : (target.matches('video') ? target : null);
+            
+            if (videoEl && modalVideo) {
+                const videoSrc = videoEl.src || (videoEl.querySelector('source') ? videoEl.querySelector('source').src : '');
+                if (videoSrc) {
+                    modal.classList.add('show');
+                    modalImg.style.display = 'none';
+                    modalVideo.style.display = 'block';
+                    modalVideo.src = videoSrc;
+                    modalVideo.load();
+                    
+                    // Propagate custom playback speed to the lightbox video
+                    const customRate = videoEl.playbackRate || 1.0;
+                    modalVideo.playbackRate = customRate;
+                    modalVideo.addEventListener('play', () => {
+                        modalVideo.playbackRate = customRate;
+                    });
+                    modalVideo.addEventListener('canplay', () => {
+                        modalVideo.playbackRate = customRate;
+                    });
+                    
+                    modalVideo.play().catch(err => console.log('Video play interrupted:', err));
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        }
     });
 
     // Function to close modal
@@ -120,10 +158,17 @@ function initLightbox() {
         modal.classList.remove('show');
         document.body.style.overflow = 'auto'; // Restore scrolling
 
-        // Optional: clear src after transition to avoid ghostly image artifacts next open
+        // Optional: clear src after transition to avoid ghostly image/video artifacts next open
         setTimeout(() => {
             if (!modal.classList.contains('show')) {
                 modalImg.src = '';
+                if (modalVideo) {
+                    modalVideo.pause();
+                    modalVideo.src = '';
+                    modalVideo.playbackRate = 1.0;
+                    modalVideo.style.display = 'none';
+                }
+                modalImg.style.display = 'none';
             }
         }, 300);
     };
@@ -131,9 +176,9 @@ function initLightbox() {
     // Event listeners to close the modal
     closeBtn.addEventListener('click', closeModal);
 
-    // Close on clicking outside the image (clicking on the dark overlay)
+    // Close on clicking outside the media content (clicking on the dark overlay)
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
+        if (e.target === modal || e.target.classList.contains('lightbox-modal')) {
             closeModal();
         }
     });

@@ -31,14 +31,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Construct visual element
             let visualHTML = '';
-            if (project.imageGrid && Array.isArray(project.imageGrid)) {
+            if (project.videoGrid && Array.isArray(project.videoGrid)) {
+                let gridVideosHTML = '';
+                project.videoGrid.forEach(vid => {
+                    const vidPath = vid.startsWith('http') ? vid : `projects/${folder}/${vid}`;
+                    gridVideosHTML += `
+                        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; cursor: zoom-in;" class="zoomable-video">
+                            <source src="${vidPath}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    `;
+                });
+                const gridStyle = project.videoGrid.length === 2 
+                    ? "display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; height: 100%; overflow: hidden; border-radius: 20px;" 
+                    : "display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; width: 100%; height: 100%; overflow: hidden; border-radius: 20px;";
+                visualHTML = `
+                    <div class="project-img-grid project-video-grid" style="${gridStyle}">
+                        ${gridVideosHTML}
+                    </div>
+                `;
+            } else if (project.imageGrid && Array.isArray(project.imageGrid)) {
                 let gridImagesHTML = '';
                 project.imageGrid.forEach(img => {
                     const imgPath = img.startsWith('http') ? img : `projects/${folder}/${img}`;
                     gridImagesHTML += `<img src="${imgPath}" alt="${project.title} Grid Image" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease;">`;
                 });
+                const gridStyle = project.imageGrid.length === 2 
+                    ? "display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; height: 100%; overflow: hidden; border-radius: 20px;" 
+                    : "display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; width: 100%; height: 100%; overflow: hidden; border-radius: 20px;";
                 visualHTML = `
-                    <div class="project-img-grid" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4px; width: 100%; height: 100%; overflow: hidden; border-radius: 20px;">
+                    <div class="project-img-grid" style="${gridStyle}">
                         ${gridImagesHTML}
                     </div>
                 `;
@@ -94,35 +116,228 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
             }
 
-            // Generate full card HTML
-            projectsHTML += `
-                <article class="project-card reveal-up" id="project-${folder}">
-                    <div class="project-visual glass-panel">
-                        ${visualContainerHTML}
-                        ${statusElement}
+            // Generate custom video HTML if defined
+            let videoHTML = '';
+            if (project.video) {
+                const videoPath = project.video.startsWith('http') ? project.video : `projects/${folder}/${project.video}`;
+                const playbackRateAttr = project.playbackRate ? `data-playback-rate="${project.playbackRate}"` : '';
+                videoHTML = `
+                    <div class="project-video-container glass-panel" style="position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 16/10; width: 100%; border: 1px solid var(--glass-border); background: var(--glass-bg); cursor: zoom-in; margin-top: 2rem;">
+                        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;" class="zoomable-video" ${playbackRateAttr}>
+                            <source src="${videoPath}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
-                    
-                    <div class="project-info">
-                        <div class="project-meta">
-                            <span class="year">${project.year || ''}</span>
-                            <span class="tag">${project.tag || ''}</span>
+                `;
+            }
+
+            // Generate stats HTML if defined
+            let statsHTML = '';
+            if (project.stats) {
+                statsHTML = `
+                    <div class="stat-callout glass-panel" style="padding: 1.5rem; border-radius: 16px; border: 1px solid var(--glass-border); background: rgba(0, 122, 255, 0.03); border-left: 4px solid var(--accent-blue); text-align: left; width: 100%;">
+                        <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: #00f2fe; line-height: 1; text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);">${project.stats.value}</span>
+                            <span style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary);">${project.stats.label}</span>
                         </div>
-                        <h3 class="project-title">${project.title}</h3>
-                        <p class="project-desc large-text" style="margin-bottom: ${project.extraImage ? '0' : '2rem'};">
-                            ${project.description}
-                        </p>
-                        ${extraImageHTML}
-                        
-                        <ul class="tech-stack">
-                            ${skillsHTML}
-                        </ul>
-                        
-                        <div class="project-links">
-                            ${linksHTML}
+                        <div style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                            ${project.stats.detail}
                         </div>
                     </div>
-                </article>
-            `;
+                `;
+            }
+
+            // Generate custom extra text/stats HTML if defined
+            let extraTextHTML = '';
+            if (project.extraText && Array.isArray(project.extraText)) {
+                let pointsHTML = '';
+                project.extraText.forEach(point => {
+                    pointsHTML += `
+                        <div class="extra-point" style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <div style="color: var(--accent-blue); font-size: 1.25rem; line-height: 1.4;">•</div>
+                            <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin: 0; text-align: left;">
+                                ${point}
+                            </p>
+                        </div>
+                    `;
+                });
+
+                extraTextHTML = `
+                    <div class="project-extra-text" style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
+                        ${statsHTML}
+                        <div style="display: flex; flex-direction: column; gap: 1.25rem; width: 100%;">
+                            ${pointsHTML}
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (project.layout === "breakout") {
+                // Determine layout styles
+                let breakoutMediaHTML = '';
+                if (project.videoGrid && Array.isArray(project.videoGrid)) {
+                    let gridVideosHTML = '';
+                    project.videoGrid.forEach(vid => {
+                        const vidPath = vid.startsWith('http') ? vid : `projects/${folder}/${vid}`;
+                        gridVideosHTML += `
+                            <video autoplay loop muted playsinline class="zoomable-video" style="cursor: zoom-in;">
+                                <source src="${vidPath}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        `;
+                    });
+                    const gridStyle = project.videoGrid.length === 2 
+                        ? "display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; height: 100%;" 
+                        : "display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; width: 100%; height: 100%;";
+                    breakoutMediaHTML = `
+                        <div class="project-media-breakout glass-panel">
+                            <div class="project-video-grid" style="${gridStyle}">
+                                ${gridVideosHTML}
+                            </div>
+                            ${statusElement}
+                        </div>
+                    `;
+                } else if (project.video) {
+                    const vidPath = project.video.startsWith('http') ? project.video : `projects/${folder}/${project.video}`;
+                    breakoutMediaHTML = `
+                        <div class="project-media-breakout glass-panel" style="cursor: zoom-in;">
+                            <video autoplay loop muted playsinline class="zoomable-video">
+                                <source src="${vidPath}" type="video/mp4">
+                            </video>
+                            ${statusElement}
+                        </div>
+                    `;
+                }
+
+                // Stats element is inherited from outer scope statsHTML
+
+                // Side Video element
+                let sideVideoHTML = '';
+                if (project.sideVideo) {
+                    const sideVidPath = project.sideVideo.startsWith('http') ? project.sideVideo : `projects/${folder}/${project.sideVideo}`;
+                    sideVideoHTML = `
+                        <div style="width: 100%; border-radius: 20px; overflow: hidden; border: 1px solid var(--glass-border); background: var(--glass-bg); aspect-ratio: 16/10; position: relative;">
+                            <video autoplay loop muted playsinline class="zoomable-video" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+                                <source src="${sideVidPath}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    `;
+                }
+
+                // Highlights
+                let highlightsHTML = '';
+                if (project.extraText && Array.isArray(project.extraText)) {
+                    project.extraText.forEach(point => {
+                        highlightsHTML += `
+                            <div class="extra-point" style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div style="color: var(--accent-blue); font-size: 1.25rem; line-height: 1.4;">•</div>
+                                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin: 0; text-align: left;">
+                                    ${point}
+                                </p>
+                            </div>
+                        `;
+                    });
+                }
+
+                projectsHTML += `
+                    <article class="project-card reveal-up" id="project-${folder}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0; width: 100%;">
+                        <!-- Header Area -->
+                        <div class="project-header" style="width: 100%; text-align: left; margin-bottom: 1rem;">
+                            <div class="project-meta" style="margin-bottom: 0.75rem;">
+                                <span class="year">${project.year || ''}</span>
+                                <span class="tag">${project.tag || ''}</span>
+                            </div>
+                            <h3 class="project-title" style="font-size: 2.5rem; margin: 0 0 1rem 0;">${project.title}</h3>
+                            <p class="project-desc large-text" style="max-width: 800px; margin: 0; text-align: left;">
+                                ${project.description}
+                            </p>
+                        </div>
+
+                        <!-- Breakout Media Section -->
+                        ${breakoutMediaHTML}
+
+                        <!-- Details Grid -->
+                        <div class="project-details-grid" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; width: 100%; margin-top: 1rem; align-items: start;">
+                            <!-- Left Column: Highlights -->
+                            <div style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
+                                <h4 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--text-primary); text-align: left; margin: 0 0 0.5rem 0;">Key Methodologies & Features</h4>
+                                <div style="display: flex; flex-direction: column; gap: 1.25rem; width: 100%;">
+                                    ${highlightsHTML}
+                                </div>
+                            </div>
+
+                            <!-- Right Column: Tech stack, Stats, Links, Side Video -->
+                            <div style="display: flex; flex-direction: column; gap: 2rem; width: 100%;">
+                                <div>
+                                    <h4 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; text-align: left; margin: 0 0 1rem 0;">Technology Stack</h4>
+                                    <ul class="tech-stack" style="justify-content: flex-start; margin: 0;">
+                                        ${skillsHTML}
+                                    </ul>
+                                </div>
+
+                                <div class="project-links" style="margin: 0;">
+                                    ${linksHTML}
+                                </div>
+
+                                ${statsHTML}
+
+                                ${sideVideoHTML}
+                            </div>
+                        </div>
+                    </article>
+                `;
+            } else {
+                // Construct visual column HTML based on extra text presence
+                let finalVisualColumnHTML = '';
+                if (extraTextHTML) {
+                    finalVisualColumnHTML = `
+                        <div class="project-visual" style="aspect-ratio: auto;">
+                            <div class="project-media-container glass-panel" style="aspect-ratio: 16/10; position: relative; border-radius: 20px; overflow: hidden; width: 100%;">
+                                ${visualContainerHTML}
+                                ${statusElement}
+                            </div>
+                            ${extraTextHTML}
+                        </div>
+                    `;
+                } else {
+                    finalVisualColumnHTML = `
+                        <div class="project-visual glass-panel">
+                            ${visualContainerHTML}
+                            ${statusElement}
+                        </div>
+                    `;
+                }
+
+                // Generate full card HTML
+                projectsHTML += `
+                    <article class="project-card reveal-up" id="project-${folder}">
+                        ${finalVisualColumnHTML}
+                        
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="year">${project.year || ''}</span>
+                                <span class="tag">${project.tag || ''}</span>
+                            </div>
+                            <h3 class="project-title">${project.title}</h3>
+                            <p class="project-desc large-text" style="margin-bottom: 2rem;">
+                                ${project.description}
+                            </p>
+                            ${extraImageHTML}
+                            
+                            <ul class="tech-stack">
+                                ${skillsHTML}
+                            </ul>
+                            
+                            <div class="project-links" style="margin-bottom: ${videoHTML ? '2rem' : '0'};">
+                                ${linksHTML}
+                            </div>
+                            
+                            ${videoHTML}
+                        </div>
+                    </article>
+                `;
+            }
         } catch (error) {
             console.error(`Error loading project ${folder}:`, error);
         }
@@ -130,6 +345,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Inject into container
     projectsContainer.innerHTML = projectsHTML;
+
+    // Apply custom playback rates to video elements
+    projectsContainer.querySelectorAll('video[data-playback-rate]').forEach(video => {
+        const rate = parseFloat(video.getAttribute('data-playback-rate'));
+        if (!isNaN(rate)) {
+            video.playbackRate = rate;
+            video.addEventListener('play', () => {
+                video.playbackRate = rate;
+            });
+            video.addEventListener('canplay', () => {
+                video.playbackRate = rate;
+            });
+        }
+    });
 
     // The scroll observer from script.js will need to attach to these new elements.
     // If the elements are added after we parse script.js, we should re-trigger observation.

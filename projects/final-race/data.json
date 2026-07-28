@@ -1,0 +1,40 @@
+{
+    "title": "The Final Race! (P5)",
+    "year": "2025",
+    "tag": "Flight Autonomy",
+    "description": "Deploying a unified autonomy stack to navigate an aggressive obstacle course comprising strictly known and dynamically unknown geometric windows.",
+    "layout": "breakout",
+    "video": "Video1.mp4",
+    "skills": [
+        "Python",
+        "PyTorch",
+        "VizFlyt",
+        "Blender",
+        "RRT*",
+        "Computer Vision",
+        "Active Sensing",
+        "PID Control"
+    ],
+    "links": [
+        {
+            "label": "Source Code",
+            "url": "https://github.com/ShreyasKhobragade/RBE595-The-Final-Race-P5",
+            "iconType": "github"
+        },
+        {
+            "label": "Project Report",
+            "url": "projects/final-race/Report.pdf",
+            "iconType": "paper"
+        }
+    ],
+    "stats": {
+        "value": "75s",
+        "label": "Sprint Time",
+        "detail": "simulation time for a complete round-trip sprint through known and unknown gates"
+    },
+    "extraText": [
+        "Multi-Model Perception Switching: Seamlessly toggles between rigorous Convolutional object detection tracking for standard gates and dense optical/depth active sensing (using RAFT and U-Net) for dynamically generated window shapes.",
+        "Global to Local Spline Morphing: The hierarchical RRT* navigation stack morphs global targets with local perception updates, letting the quadrotor arc smoothly through gates without decelerating.",
+        "Round-Trip Sprint Navigation: Dynamically pivots to execute a mirrored tracking pass backward through the entire obstacle flow, requiring complete spatial awareness and robust PID altitude hold under significant velocity perturbations."
+    ]
+}

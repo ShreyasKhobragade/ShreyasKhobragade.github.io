@@ -1,0 +1,39 @@
+{
+    "title": "Buildings built in minutes — SfM + NeRF reconstruction",
+    "year": "2025",
+    "tag": "SfM + NeRF",
+    "description": "A dual-pipeline 3D reconstruction system: classical Structure-from-Motion for precise pose estimation paired with Neural Radiance Fields for dense photorealistic view synthesis from sparse image inputs.",
+    "videoGrid": [
+        "NeRF_lego.mp4",
+        "NeRF_ship.mp4"
+    ],
+    "skills": [
+        "Python",
+        "PyTorch",
+        "COLMAP",
+        "Structure-from-Motion",
+        "Neural Radiance Fields"
+    ],
+    "links": [
+        {
+            "label": "Source Code",
+            "url": "https://github.com/ShreyasKhobragade/RBE549-SfM-and-NeRF",
+            "iconType": "github"
+        },
+        {
+            "label": "Project Report",
+            "url": "projects/sfm-nerf/Report.pdf",
+            "iconType": "paper"
+        }
+    ],
+    "stats": {
+        "value": "31.49",
+        "label": "PSNR",
+        "detail": "nerf render · and 0.411 px SfM reprojection error · sub-pixel accuracy"
+    },
+    "extraText": [
+        "Reconstructed photorealistic 3D models of large-scale architecture from only 2D image sequences, navigating the trade-offs between geometric accuracy (SfM's strength) and photorealistic rendering (NeRF's strength) for complex urban scenarios.",
+        "Engineered the classical front-end with COLMAP for SfM pose recovery, then the neural back-end with coordinate-based MLPs for NeRF volumetric rendering. Integrated through PyTorch.",
+        "Outperformed baselines on high-frequency details and complex non-Lambertian lighting — shiny surfaces, reflections, and specular materials — which break simpler reconstruction methods."
+    ]
+}

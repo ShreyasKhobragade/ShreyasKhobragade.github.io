@@ -2,18 +2,42 @@
     "title": "Deep Visual-Inertial Odometry",
     "year": "2025",
     "tag": "VIO",
-    "description": "Designed a visual-inertial odometry (VIO) pipeline combining CNN-based visual feature extraction with LSTM-based IMU fusion. Trained models using synthetic datasets generated in Blender across 25 trajectory types and multiple noise profiles. Achieved a 28% reduction in absolute trajectory error RMSE compared to baseline approaches.",
+    "description": "A stereo VIO system combining S-MSCKF filter-based fusion with a head-to-head comparison against three trained CNN-LSTM fusion networks — quantifying where classical filtering still beats learned approaches and where it doesn't.",
     "image": "vio_cover.png",
     "skills": [
+        "C++",
         "Python",
         "PyTorch",
-        "Blender"
+        "Blender",
+        "ROS"
     ],
     "links": [
         {
-            "label": "Source",
+            "label": "Deep VIO Source",
             "url": "https://github.com/ShreyasKhobragade/RBE549-Deep-and-Un-Deep-VIO",
             "iconType": "github"
+        },
+        {
+            "label": "Classical VIO Source",
+            "url": "https://github.com/ShreyasKhobragade/RBE549-Deep-and-Un-Deep-VIO/tree/main/Phase1",
+            "iconType": "github"
+        },
+        {
+            "label": "VIO Report",
+            "url": "projects/deep-vio/Report_classical_vio.pdf",
+            "iconType": "paper"
         }
+    ],
+    "video": "Output_VIO.mp4",
+    "playbackRate": 2.0,
+    "stats": {
+        "value": "0.091 m",
+        "label": "RMSE",
+        "detail": "Stereo VIO · EuRoC Benchmark · Classical Filter"
+    },
+    "extraText": [
+        "Built a real-time S-MSCKF stereo VIO in C++ fusing IMU propagation with feature tracking, time alignment, and statistical outlier rejection. Achieves 0.091 m RMSE on the EuRoC benchmark for 6-DoF state estimation across multiple MAV sequences.",
+        "Trained and benchmarked three CNN-LSTM sensor-fusion networks against the classical filter in PyTorch on synthetic camera–IMU data — late fusion winning at 2.38 RMSE vs 5.24 / 2.82 for the other two architectures — with a reproducible, automated evaluation harness quantifying accuracy trade-offs.",
+        "The result is a clean comparison: filter-based methods remain the strongest baseline for accuracy on well-calibrated stereo+IMU, while learned approaches show promise specifically in fusion-strategy choice (late > early > intermediate in this setting)."
     ]
 }

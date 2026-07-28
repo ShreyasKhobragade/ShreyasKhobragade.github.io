@@ -63,3 +63,10 @@
 .drone-marquee-item img {
     cursor: pointer;
 }
+
+.project-img,
+.zoomable-video,
+.project-video-container,
+.project-img-grid {
+    cursor: zoom-in;
+}

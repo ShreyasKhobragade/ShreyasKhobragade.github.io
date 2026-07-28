@@ -2,7 +2,7 @@
     "title": "Einstein Vision",
     "year": "2025",
     "tag": "Computer Vision",
-    "description": "Perception and visualization pipelines for autonomous driving scenarios, integrating object detection, lane detection, optical flow, and depth estimation. Integrated models including Mask R-CNN, YOLO, Detic, Depth Anything V2, and RAFT to detect and track vehicles, pedestrians, lanes, and traffic signals. Generated high-fidelity rendered videos across 13 driving sequences, reducing perception ambiguities by 15–20% through hybrid deep learning and classical heuristics.",
+    "description": "A multi-model perception dashboard translating outputs from Mask R-CNN, YOLO, DETIC, Depth Anything V2, and RAFT into driver-facing overlays — a human-in-the-loop interface where operators verify, supervise, and understand automated decisions through clear visual feedback.",
     "image": "cropped_render1.png",
     "imageGrid": [
         "vehicle_detection_scene_4.png",
@@ -22,5 +22,16 @@
             "url": "https://github.com/ShreyasKhobragade/RBE549-Einstein-Vision",
             "iconType": "github"
         }
+    ],
+    "video": "einstein.mp4",
+    "stats": {
+        "value": "5",
+        "label": "Models Fused",
+        "detail": "Unified real-time interface combining Mask R-CNN, YOLO, DETIC, Depth Anything V2, and RAFT."
+    },
+    "extraText": [
+        "Designed driver-facing visualizations that translate raw outputs from five diverse deep-learning architectures — segmentation, detection, open-vocabulary classification, depth estimation, and optical flow — into intuitive overlays prioritizing explainability.",
+        "Integrated and troubleshot the pipeline across Mask R-CNN, YOLO, DETIC, Depth Anything V2, and RAFT, iteratively balancing perception accuracy against cognitive load so visualizations support effective human oversight rather than overwhelming the operator.",
+        "The result is a human-in-the-loop dashboard demonstrating transparent autonomous systems — humans can see detected hazards, system confidence, and vehicle intent in real-time."
     ]
 }

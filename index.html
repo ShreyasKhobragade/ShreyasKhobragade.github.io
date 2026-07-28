@@ -12,9 +12,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="lightbox.css">
-    <link rel="stylesheet" href="marquee.css">
+    <link rel="stylesheet" href="styles.css?v=1.0.4">
+    <link rel="stylesheet" href="lightbox.css?v=1.0.4">
+    <link rel="stylesheet" href="marquee.css?v=1.0.4">
 </head>
 
 <body>
@@ -484,12 +484,13 @@
     <!-- Lightbox Modal -->
     <div id="lightbox-modal" class="lightbox-modal">
         <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <img class="lightbox-content" id="lightbox-img" alt="Lightbox Preview" style="display: none;">
+        <video class="lightbox-content" id="lightbox-video" autoplay loop muted playsinline style="display: none; width: 100%; max-width: 1100px; border-radius: 16px;"></video>
     </div>
 
-    <script src="projects/projects_index.js?v=1.0.1"></script>
-    <script src="js/render_projects.js?v=1.0.1"></script>
-    <script src="script.js"></script>
+    <script src="projects/projects_index.js?v=1.0.5"></script>
+    <script src="js/render_projects.js?v=1.0.5"></script>
+    <script src="script.js?v=1.0.5"></script>
 </body>
 
 </html>
