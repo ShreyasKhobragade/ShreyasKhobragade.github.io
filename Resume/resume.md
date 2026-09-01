@@ -1,108 +1,89 @@
 # SHREYAS DEVDATTA KHOBRAGADE  
-Worcester, MA | +1-774-525-2402 | skhobragade@wpi.edu  
-LinkedIn | GitHub | Portfolio  
+Worcester, MA, USA | (774) 525-2402 | shreyasdevdattakhobragade@gmail.com | LinkedIn | GitHub | Portfolio  
 
 ---
 
-## SUMMARY
-Robotics and Perception Engineer with a strong applied research background and hands-on experience building real-time autonomous systems. Experienced in computer vision, perception pipelines, motion planning, and sim-to-real deployment for aerial and ground robots. Proven ability to translate research ideas into production-ready systems running on embedded hardware under real-world constraints.
+## PROFESSIONAL SUMMARY
+Robotics Engineer with an M.S. in Robotics (GPA 4.0) and 2+ years of hands-on experience designing and integrating full-stack autonomous systems, from real-time perception to closed-loop motion planning and control. Skilled in ROS2, C, C++, Python, and PyTorch for sensor fusion, 3D reconstruction, deep learning model optimization, and sim-to-real deployment on resource-constrained embedded platforms (Jetson Orin, Raspberry Pi). First-author publications at IEEE RA-L 2026 and ICRA Workshop, with experience collaborating with PIs from prototype through manuscript submission.
 
 ---
 
 ## EDUCATION
 
-**Worcester Polytechnic Institute (WPI)** — Worcester, MA  
-**M.S. Robotics Engineering**, GPA: 4.0 / 4.0  
+**Worcester Polytechnic Institute** — Worcester, MA  
+**M.S., Robotics and Automation Engineering**, GPA: 4.0 / 4.0  
 *Aug 2024 – May 2026*  
-- Awards: Dr. Glenn Yee Graduate Student Project Award, EDU Bridge Scholarship  
-- Coursework: Computer Vision, Motion Planning, Reinforcement Learning, Autonomous Aerial Robotics  
+- **Awards & Honors:** Dr. Glenn Yee Graduate Student Project Award, Travel Award, EDU Bridge Scholarship  
 
-**Visvesvaraya National Institute of Technology (VNIT)** — Nagpur, India  
-**B.Tech. Electronics and Communication Engineering**, GPA: 8.26 / 10  
+**Visvesvaraya National Institute of Technology** — Nagpur, India  
+**B.Tech., Electronics and Communication Engineering**, GPA: 8.26 / 10  
 *Aug 2018 – May 2022*  
 
 ---
 
-## TECHNICAL SKILLS
+## WORK AND RESEARCH EXPERIENCE
 
-**Programming Languages:** Python, C, C++, MATLAB  
-**Robotics & Perception:** ROS2, OMPL, OpenCV, NumPy, PyTorch, TensorFlow, scikit-learn  
-**Autonomy & AI:** Reinforcement Learning (PPO), Motion Planning (RRT, Kinodynamic RRT), Visual-Inertial Odometry  
-**Simulation & Tools:** Isaac Sim, Blender, MATLAB/Simulink, LaTeX  
-**Embedded & Hardware:** NVIDIA Jetson Orin Nano, Raspberry Pi, Arduino, ESP32, Pixhawk / PX4  
-**Other:** Linux, Git, Data Visualization, Model Training & Evaluation  
-
----
-
-## WORK EXPERIENCE
-
-### PeAR Lab, Worcester Polytechnic Institute — Graduate Researcher  
-*Jul 2025 – Present*
-- Designed and implemented a complete **sim-to-real autonomy pipeline** for aerial robots operating in **zero-light and GPS-denied environments**.
-- Built a **perception system using structured lighting and coded apertures** for dense depth estimation, enabling robust obstacle avoidance without ambient illumination.
-- Trained and deployed deep learning models (DenseNet-121) for depth inference, achieving **real-time performance (15+ FPS)** on **Jetson Orin Nano**.
-- Integrated perception outputs with motion planning and control for closed-loop autonomous navigation in cluttered environments.
-- Focused on system reliability, latency constraints, and deployment on embedded hardware.
-- Developing learning-based low-light navigation using structured lighting with event cameras for sim-to-real transfer.
+### Perception and Autonomous Robotics (PeAR) Lab, WPI — Worcester, MA  
+**Graduate Researcher – Aerial Autonomy, Perception, and Sim-to-Real Deployment**  
+*Jul 2025 – May 2026*  
+- Designed and implemented a sim-to-real autonomy pipeline for aerial robots in zero-light, GPS-denied environments, published at IEEE RA-L 2026.  
+- Built a depth estimation system using structured lighting and coded apertures for obstacle avoidance in complete darkness (<1 milli-lux illumination).  
+- Trained and deployed a DenseNet model using PyTorch & TensorRT, reaching 20 Hz real-time inference on Jetson Orin Nano under latency constraints.  
+- Integrated perception with motion planning in a closed-loop controller, achieving a 95.5% autonomous navigation success rate in cluttered environments.  
+- Fused event camera and structured-light sensing to extend obstacle detection to 6 meters in complete darkness, including thin and dark objects.  
+- Boosted perception throughput to 30+ fps on Jetson Orin Nano by reimplementing the event-based pipeline in C++, enabling 7 m/s flight.  
+- Engineered two custom quadrotors end-to-end, spanning mechanical design, electronics integration, and flight testing, validating both perception systems.  
 
 ---
 
-### Jio Platforms Limited — 5G Software Engineer (R&D)  
-*Jun 2022 – May 2024*
-- Developed and modified **high-performance C/C++ networking software** within the Vector Packet Processing (VPP) framework.
-- Implemented shared-memory mechanisms to store **User Plane Function (UPF)** statistics, enabling improved real-time monitoring and faster debugging of system crashes.
-- Migrated and refactored UPF components to support newer VPP versions, improving system stability, performance, and maintainability.
-- Worked on performance-critical, low-latency systems with strict reliability requirements.
+### Jio Platforms Limited — Bengaluru, India  
+**5G Software Engineer, R&D**  
+*Jun 2022 – May 2024*  
+- Developed and optimized high-performance C/C++ networking software in the Vector Packet Processing (VPP) framework for production 5G core systems.  
+- Implemented shared-memory instrumentation for UPF statistics by modifying VPP source in C, enabling faster crash debugging and monitoring.  
+- Migrated and refactored UPF components across newer VPP releases, improving system stability, performance, and maintainability.  
 
 ---
 
 ## PUBLICATIONS
 
-- **AsterNav: Autonomous Aerial Robot Navigation in Darkness Using Passive Computation**,  
-  *IEEE Robotics and Automation Letters (RA-L), 2026 (Early Access)*  
-- **Real-time Track and Anomaly Detection in Complex Railway Environments**,  
-  *International Conference on Communication, Embedded Systems, Machine Learning and Signal Processing (PCEMS), 2022*  
+- **AsterNav: Autonomous Aerial Robot Navigation in Darkness Using Passive Computation**  
+  *S. Khobragade\*, D. Singh\*, N. J. Sanket*, IEEE Robotics and Automation Letters (RA-L), 2026  
+- **NightSight: Passive Computation for Navigation in Dark Using Events**  
+  *S. Khobragade\*, B. Vaghasiya\*, D. Singh\*, N. J. Sanket*, Neuromorphic Field Robotics Workshop, IEEE ICRA, 2026  
+- **(Under Review) Dhruva: Aerial Navigation Using Coded Events**  
+  *D. Singh, S. Khobragade\*, B. Vaghasiya\*, M. Bhat, N. J. Sanket*, Nature Communications, 2026  
 
 ---
 
-## PROJECTS
+## TECHNICAL PROJECTS
 
-### Einstein Vision: Advanced Visualizations for Self-Driving Cars  
-*Python, PyTorch, OpenCV, Blender* | GitHub  
-*Jan 2025 – May 2025*
-- Developed perception and visualization pipelines for autonomous driving scenarios, integrating **object detection, lane detection, optical flow, and depth estimation**.
-- Integrated models including Mask R-CNN, YOLO, Detic, Depth Anything V2, and RAFT to detect and track vehicles, pedestrians, lanes, and traffic signals.
-- Generated high-fidelity rendered videos across **13 driving sequences**, reducing perception ambiguities by **15–20%** through hybrid deep learning and classical heuristics.
-
----
-
-### Deep Visual-Inertial Odometry  
-*Python, PyTorch, Blender* | GitHub  
-*Jan 2025 – May 2025*
-- Designed a **visual-inertial odometry (VIO) pipeline** combining CNN-based visual feature extraction with LSTM-based IMU fusion.
-- Trained models using synthetic datasets generated in Blender across **25 trajectory types** and multiple noise profiles.
-- Achieved a **28% reduction in absolute trajectory error RMSE** compared to baseline approaches.
-
----
-
-### Optimizing Mixed-Autonomy Traffic Using Reinforcement Learning  
-*Python, PPO, SUMO, Flow*  
-*Oct 2024 – Dec 2024*
-- Developed a reinforcement learning framework using **Proximal Policy Optimization (PPO)** to improve traffic flow in mixed human-autonomous driving scenarios.
-- Designed reward functions incorporating efficiency and fairness constraints.
-- Demonstrated improved throughput, average speed, and fairness across multiple bottleneck scenarios.
-
----
+### Structure-from-Motion & NeRF Multi-View 3D Reconstruction  
+*Jan 2025 – Mar 2025*  
+- Engineered a classical Structure-from-Motion (SfM) pipeline incorporating SIFT feature matching, RANSAC 8-point fundamental matrix estimation, nonlinear PnP pose refinement (~16% error reduction), and sparse bundle adjustment using SciPy's least-squares optimizer for global consistency.  
+- Trained an 8-layer NeRF model with positional encoding, reaching PSNR 28.4 on the Lego benchmark, and built a custom capture pipeline (COLMAP, Polycam, EXIF calibration, background removal) reaching PSNR 31.49 / SSIM 0.94 on self-collected physical figurine data.  
 
 ### Real-Time Motion Planning for Drones in Unknown Environments  
-*ROS2, OctoMap, EDT3D, C++*  
-*Oct 2024 – Dec 2024*
-- Built a real-time 3D motion planning framework for aerial robots operating in unknown and cluttered environments.
-- Integrated **OctoMap** for global mapping and **EDT3D** for local collision checking.
-- Implemented a **kinodynamic RRT-based planner** accounting for vehicle dynamics and obstacle avoidance.
-- Validated collision-free navigation performance in simulation.
+*Oct 2024 – Dec 2024*  
+- Developed a real-time C++ motion planning framework integrating OctoMap for hierarchical global 3D occupancy mapping from simulated LiDAR point clouds across cluttered environments, and EDT3D for local collision detection via distance transforms within a small windowed region around the drone.  
+- Designed a kinodynamic RRT-based planner in OMPL generating safe, efficient trajectories under vehicle dynamics, validated in Gazebo simulation using PX4 SITL bridged to ROS via MAVROS for closed-loop, collision-free navigation testing.  
+
+### Einstein Vision: Advanced Perception Stack for Self-Driving Cars  
+*Jan 2025 – May 2025*  
+- Integrated object detection and tracking (YOLO, Detic), instance segmentation (Mask R-CNN), lane detection, monocular depth (Depth Anything V2), and RAFT optical flow into a unified perception pipeline on Tesla Model S footage rendered in Blender.  
+- Generated high-fidelity rendered videos across 13 driving sequences, cutting perception ambiguity 15–20% via classical heuristics.  
+
+### Learning Visual Inertial Odometry for Aerial Robots  
+*Jan 2025 – May 2025*  
+- Implemented a stereo MSCKF VIO pipeline in C++/Python featuring IMU state propagation, feature tracking, and EKF updates with chi-squared gating, achieving 0.091 m translation RMSE on the EuRoC benchmark for robust state estimation.  
+- Developed a CNN+LSTM sensor fusion network fusing visual and IMU features, reaching 2.38m RMSE across 25 different trajectories.  
 
 ---
 
-## KEYWORDS
-Robotics Engineering, Computer Vision, Perception, Autonomy, ROS2, Motion Planning, Reinforcement Learning, SLAM, Visual-Inertial Odometry, Embedded Systems, Jetson, Autonomous Drones, Real-Time Systems, Sim-to-Real, Python, C++
+## TECHNICAL SKILLS
+
+- **Perception, Computer Vision, and 3D:** Real-time Perception Pipelines, 3D Reconstruction (NeRF, Structure-from-Motion, Point Clouds, Photogrammetry), Camera Calibration and Pose Estimation, Depth Estimation (Depth-from-Defocus, Monocular), Object Detection and Tracking, Object Segmentation (YOLOv8, Detic), Optical Flow (RAFT), Event Cameras, Visual-Inertial Odometry (VIO), OpenCV, Multi-View Geometry  
+- **Autonomy, Planning, and Control:** Motion and Path Planning (OMPL, RRT, OctoMap, Nav2), Manipulator Kinematics (Forward/Inverse Kinematics, DH Parameters), MoveIt, PD/PID Control (Motor Control), Closed-Loop Autonomous Navigation, Sim-to-Real Deployment, Reinforcement Learning (PPO), GPS-Denied Navigation, SLAM, EKF State Estimation, VLM, VLA, Sensor Integration and Sensor Fusion (RGB-D/RealSense, LiDAR, IMU)  
+- **Software and Infrastructure:** Python, C++, C, Embedded C, MATLAB, ROS, ROS2, Linux, Docker, Git/GitHub, PyTorch, TensorFlow, TensorRT, Unit Testing, CI/CD, 32-bit Microcontrollers, RTOS, Fusion 360, Onshape, SolidWorks, Protocols: CAN, SPI, I2C, UART  
+- **Robotics Stack and Simulation:** PX4 Autopilot, ArduPilot, Mavlink, Isaac Sim, Gazebo, MuJoCo, RViz, Simulink, Blender  
+- **Hardware:** Jetson Orin Nano/NX, Raspberry Pi, Intel RealSense, Pixhawk Flight Controller, Arduino Uno, ESP32  
