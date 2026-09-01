@@ -884,6 +884,42 @@ img {
     width: 100%;
 }
 
+/* Project Page Call-To-Action Link below image */
+.project-page-cta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(0, 122, 255, 0.08);
+    border: 1px solid rgba(0, 122, 255, 0.3);
+    border-radius: 14px;
+    color: var(--accent-blue);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    backdrop-filter: blur(8px);
+    width: 100%;
+}
+
+.project-page-cta-link:hover {
+    background: rgba(0, 122, 255, 0.2);
+    border-color: var(--accent-blue);
+    color: #00f2fe;
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.project-page-cta-link svg {
+    transition: transform 0.3s ease;
+}
+
+.project-page-cta-link:hover svg {
+    transform: translateX(4px);
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */

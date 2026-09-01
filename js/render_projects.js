@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 let gridImagesHTML = '';
                 project.imageGrid.forEach(img => {
                     const imgPath = img.startsWith('http') ? img : `projects/${folder}/${img}`;
-                    gridImagesHTML += `<img src="${imgPath}" alt="${project.title} Grid Image" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease;">`;
+                    gridImagesHTML += `<img src="${imgPath}" alt="${project.title} Grid Image" class="project-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; cursor: zoom-in;">`;
                 });
                 const gridStyle = project.imageGrid.length === 2 
                     ? "display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; height: 100%; overflow: hidden; border-radius: 20px;" 
@@ -66,20 +66,22 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
             } else if (project.image) {
                 const imagePath = project.image.startsWith('http') ? project.image : `projects/${folder}/${project.image}`;
-                visualHTML = `<img src="${imagePath}" alt="${project.title} Cover Image" class="project-img">`;
+                visualHTML = `<img src="${imagePath}" alt="${project.title} Cover Image" class="project-img" style="cursor: zoom-in;">`;
             }
 
-            // Construct link wrapping if projectPage exists
-            let visualContainerHTML = '';
+            // Visual container does not wrap image in <a> so clicking image opens lightbox zoom
+            const visualContainerHTML = visualHTML;
+
+            // Construct call-to-action link below visual container if projectPage exists
+            let projectPageCTAHTML = '';
             if (project.projectPage) {
                 const pagePath = project.projectPage.startsWith('http') ? project.projectPage : `projects/${folder}/${project.projectPage}`;
-                visualContainerHTML = `
-                    <a href="${pagePath}" class="project-link-wrapper" style="display: block; width: 100%; height: 100%; text-decoration: none; border-radius: 20px; overflow: hidden;">
-                        ${visualHTML}
+                projectPageCTAHTML = `
+                    <a href="${pagePath}" class="project-page-cta-link">
+                        <span>Click here for full project details</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a>
                 `;
-            } else {
-                visualContainerHTML = visualHTML;
             }
 
             // Generate Skills HTML
@@ -92,6 +94,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Generate Links HTML
             let linksHTML = '';
+            const hasProjectPageInLinks = project.links && project.links.some(l => l.label.toLowerCase().includes('project'));
+            if (project.projectPage && !hasProjectPageInLinks) {
+                const pagePath = project.projectPage.startsWith('http') ? project.projectPage : `projects/${folder}/${project.projectPage}`;
+                linksHTML += `
+                    <a href="${pagePath}" class="link-item hover-underline" style="color: var(--accent-blue);">
+                        ${iconMap['link']}
+                        Project Details
+                    </a>
+                `;
+            }
             if (project.links) {
                 project.links.forEach(link => {
                     const svgIcon = iconMap[link.iconType] || iconMap['link'];
@@ -297,14 +309,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 ${visualContainerHTML}
                                 ${statusElement}
                             </div>
+                            ${projectPageCTAHTML}
                             ${extraTextHTML}
                         </div>
                     `;
                 } else {
                     finalVisualColumnHTML = `
-                        <div class="project-visual glass-panel">
-                            ${visualContainerHTML}
-                            ${statusElement}
+                        <div class="project-visual" style="aspect-ratio: auto; display: flex; flex-direction: column;">
+                            <div class="project-media-container glass-panel" style="aspect-ratio: 16/10; position: relative; border-radius: 20px; overflow: hidden; width: 100%;">
+                                ${visualContainerHTML}
+                                ${statusElement}
+                            </div>
+                            ${projectPageCTAHTML}
                         </div>
                     `;
                 }
