@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
             } else if (project.image) {
                 const imagePath = project.image.startsWith('http') ? project.image : `projects/${folder}/${project.image}`;
-                visualHTML = `<img src="${imagePath}" alt="${project.title} Cover Image" class="project-img" style="cursor: zoom-in;">`;
+                const fitStyle = project.imageFit ? ` object-fit: ${project.imageFit};` : '';
+                visualHTML = `<img src="${imagePath}" alt="${project.title} Cover Image" class="project-img" style="cursor: zoom-in;${fitStyle}">`;
             }
 
             // Visual container does not wrap image in <a> so clicking image opens lightbox zoom
@@ -302,10 +303,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 // Construct visual column HTML based on extra text presence
                 let finalVisualColumnHTML = '';
+                const containerAspectRatio = project.aspectRatio || '16/10';
                 if (extraTextHTML) {
                     finalVisualColumnHTML = `
                         <div class="project-visual" style="aspect-ratio: auto;">
-                            <div class="project-media-container glass-panel" style="aspect-ratio: 16/10; position: relative; border-radius: 20px; overflow: hidden; width: 100%;">
+                            <div class="project-media-container glass-panel" style="aspect-ratio: ${containerAspectRatio}; position: relative; border-radius: 20px; overflow: hidden; width: 100%;">
                                 ${visualContainerHTML}
                                 ${statusElement}
                             </div>
@@ -316,7 +318,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 } else {
                     finalVisualColumnHTML = `
                         <div class="project-visual" style="aspect-ratio: auto; display: flex; flex-direction: column;">
-                            <div class="project-media-container glass-panel" style="aspect-ratio: 16/10; position: relative; border-radius: 20px; overflow: hidden; width: 100%;">
+                            <div class="project-media-container glass-panel" style="aspect-ratio: ${containerAspectRatio}; position: relative; border-radius: 20px; overflow: hidden; width: 100%;">
                                 ${visualContainerHTML}
                                 ${statusElement}
                             </div>

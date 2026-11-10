@@ -1,5 +1,6 @@
 const projectFolders = [
     "asternav",
+    "vla",
     "einstein-vision",
     "sfm-nerf",
     "final-race",

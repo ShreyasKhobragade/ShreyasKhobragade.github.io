@@ -1,0 +1,35 @@
+{
+  "title": "ACT vs SmolVLA: Imitation Learning for Manipulation",
+  "year": "2026",
+  "tag": "VLA & Manipulation",
+  "description": "Teaching a simulated Franka Panda arm to pick and place objects, benchmarking a compact transformer policy (ACT, 52M) against a fine-tuned Vision-Language-Action foundation model (SmolVLA, 450M) using LeRobot in MuJoCo.",
+  "image": "pickplace_rollouts.gif",
+  "aspectRatio": "780 / 552",
+  "skills": [
+    "Python",
+    "PyTorch",
+    "SmolVLA",
+    "ACT",
+    "LeRobot",
+    "MuJoCo",
+    "Imitation Learning",
+    "gym-hil"
+  ],
+  "links": [
+    {
+      "label": "Source Code",
+      "url": "https://github.com/ShreyasKhobragade/vla",
+      "iconType": "github"
+    }
+  ],
+  "stats": {
+    "value": "80%",
+    "label": "Success Rate",
+    "detail": "SmolVLA (450M) vs 50% ACT on multi-stage pick-and-place · 50 fixed evaluation seeds"
+  },
+  "extraText": [
+    "Engineered an end-to-end imitation learning pipeline: scripted expert demonstrations (500 episodes) → policy training → rigorous evaluation on 50 fixed seeds with 95% Wilson confidence intervals.",
+    "Built a custom randomized pick-and-place environment in MuJoCo (Franka Panda) with dual-camera inputs (front & wrist at 128×128) and strict multi-step success verification (placement, release, and back-off).",
+    "Demonstrated that while both policies achieve 94% on simple picking, the 450M VLA scales significantly better on complex multi-stage tasks (80% vs 50%), resolving critical post-grasp stalling failure modes observed in ACT."
+  ]
+}
