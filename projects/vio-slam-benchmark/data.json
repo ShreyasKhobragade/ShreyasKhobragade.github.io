@@ -1,0 +1,53 @@
+{
+  "title": "VIO-SLAM Benchmark",
+  "year": "2026",
+  "tag": "SLAM",
+  "description": "A reproducible head-to-head benchmark of two monocular-inertial SLAM systems, VINS-Fusion and ORB-SLAM3, on EuRoC MH_01_easy, scored with evo.",
+  "layout": "breakout",
+  "videoGrid": [
+    {
+      "src": "vins_loop_rviz.mp4",
+      "aspect": "800 / 494",
+      "caption": "VINS-Fusion + loop closure · RViz · 2× speed"
+    },
+    {
+      "src": "orbslam3_viewer.mp4",
+      "aspect": "800 / 600",
+      "caption": "ORB-SLAM3 · map viewer · 2× speed"
+    }
+  ],
+  "extraImage": "ate_runs_dark.png",
+  "extraImageAlt": "ATE RMSE per run on the common window: VINS-Fusion odometry only and with loop closure, ORB-SLAM3 over 5 headless runs, and the first ORB-SLAM3 run with the viewer on",
+  "skills": [
+    "C++",
+    "ROS Noetic",
+    "Docker",
+    "ORB-SLAM3",
+    "VINS-Fusion",
+    "Pangolin",
+    "OpenCV",
+    "Eigen",
+    "Python",
+    "evo",
+    "ffmpeg",
+    "Bash"
+  ],
+  "links": [
+    {
+      "label": "Source Code",
+      "url": "https://github.com/ShreyasKhobragade/vio-slam-benchmark",
+      "iconType": "github"
+    }
+  ],
+  "stats": {
+    "value": "−66%",
+    "label": "ATE with Loop Closure",
+    "detail": "VINS-Fusion ATE RMSE 0.181 m → 0.062 m · local drift (RPE) unchanged · EuRoC MH_01_easy, mono + IMU"
+  },
+  "extraText": [
+    "Built VINS-Fusion in Docker (ROS Noetic) and ORB-SLAM3 natively on Ubuntu 22.04 with no sudo, porting ORB-SLAM3 to C++17 to build against Pangolin v0.9.6. Wrote a headless ORB-SLAM3 runner so scored runs carry no viewer or recording overhead, and kept the scored runs separate from the visual-only screen recordings shown here (2× speed).",
+    "Scored everything with one evo recipe: SE(3) Umeyama alignment, ATE RMSE, and RPE per 1 m (translation and rotation). Compared VINS with loop closure off and on, ran ORB-SLAM3 5 times because it isn't deterministic, and compared both systems on a common time window because ORB-SLAM3 misses the first ~46 s while its IMU initializes.",
+    "ORB-SLAM3 over 5 headless runs: ATE 0.075 ± 0.012 m (range 0.058–0.090 m), with 12–36 map resets during start-up. On the common window, both with loop closure, VINS scored 0.060 m vs ORB-SLAM3's 0.075 m mean, effectively a tie on this easy sequence. ORB-SLAM3 has about half the rotational drift (0.12 vs 0.24 deg/m), while VINS tracks from take-off.",
+    "Scope: this covers one sequence, the easiest in EuRoC, and 5 ORB-SLAM3 runs give only a rough spread."
+  ]
+}

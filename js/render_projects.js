@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             let visualHTML = '';
             if (project.videoGrid && Array.isArray(project.videoGrid)) {
                 let gridVideosHTML = '';
-                project.videoGrid.forEach(vid => {
+                project.videoGrid.forEach(item => {
+                    const vid = typeof item === 'object' ? item.src : item;
                     const vidPath = vid.startsWith('http') ? vid : `projects/${folder}/${vid}`;
                     gridVideosHTML += `
                         <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; cursor: zoom-in;" class="zoomable-video">
@@ -188,7 +189,40 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (project.layout === "breakout") {
                 // Determine layout styles
                 let breakoutMediaHTML = '';
-                if (project.videoGrid && Array.isArray(project.videoGrid)) {
+                const hasCaptionedGrid = project.videoGrid && Array.isArray(project.videoGrid) && project.videoGrid.some(v => typeof v === 'object');
+                if (hasCaptionedGrid) {
+                    // Captioned grid: each column is sized by its video's aspect ratio so all videos
+                    // share one height and show uncropped, with a caption bar underneath.
+                    const items = project.videoGrid.map(v => typeof v === 'object' ? v : { src: v });
+                    const aspectToNumber = a => {
+                        if (!a) return 16 / 10;
+                        const [w, h] = String(a).split('/').map(Number);
+                        return h ? w / h : w;
+                    };
+                    const columns = items.map(v => `${aspectToNumber(v.aspect).toFixed(3)}fr`).join(' ');
+                    let cellsHTML = '';
+                    items.forEach(v => {
+                        const vidPath = v.src.startsWith('http') ? v.src : `projects/${folder}/${v.src}`;
+                        const aspectStyle = v.aspect ? `aspect-ratio: ${v.aspect};` : '';
+                        cellsHTML += `
+                            <figure class="breakout-video-cell">
+                                <video autoplay loop muted playsinline class="zoomable-video" style="${aspectStyle}">
+                                    <source src="${vidPath}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                ${v.caption ? `<figcaption>${v.caption}</figcaption>` : ''}
+                            </figure>
+                        `;
+                    });
+                    breakoutMediaHTML = `
+                        <div class="project-media-breakout project-media-breakout--captioned glass-panel">
+                            <div class="breakout-captioned-grid" style="--breakout-columns: ${columns};">
+                                ${cellsHTML}
+                            </div>
+                            ${statusElement}
+                        </div>
+                    `;
+                } else if (project.videoGrid && Array.isArray(project.videoGrid)) {
                     let gridVideosHTML = '';
                     project.videoGrid.forEach(vid => {
                         const vidPath = vid.startsWith('http') ? vid : `projects/${folder}/${vid}`;
@@ -235,6 +269,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 Your browser does not support the video tag.
                             </video>
                         </div>
+                    `;
+                }
+
+                // Optional figure shown below the stat callout in the right column
+                let breakoutImageHTML = '';
+                if (project.extraImage) {
+                    const extraPath = project.extraImage.startsWith('http') ? project.extraImage : `projects/${folder}/${project.extraImage}`;
+                    breakoutImageHTML = `
+                        <img src="${extraPath}" alt="${project.extraImageAlt || project.title + ' figure'}" class="project-img breakout-side-img">
                     `;
                 }
 
@@ -294,6 +337,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 </div>
 
                                 ${statsHTML}
+
+                                ${breakoutImageHTML}
 
                                 ${sideVideoHTML}
                             </div>
